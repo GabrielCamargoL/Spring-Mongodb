@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-  
+
   @Autowired
   UserRepository repositoryUser;
 
@@ -31,7 +31,7 @@ public class UserController {
   public User getOneUser(@PathVariable String userId) {
     Optional<User> userOptional = repositoryUser.findById(userId);
 
-    if (userOptional.isEmpty()){
+    if (userOptional.isEmpty()) {
 
       return null;
     } else {
@@ -43,10 +43,10 @@ public class UserController {
 
   @PostMapping("/user")
   public User createUser(@RequestBody User reqUser) {
-    
-    User userExists = repositoryUser.findByEmail(reqUser.getEmail());
-    
-    if (userExists == null) {
+
+    Optional<User> userExists = repositoryUser.findByEmail(reqUser.getEmail());
+
+    if (userExists.isEmpty()) {
       User user = repositoryUser.insert(reqUser);
       return user;
 
@@ -57,7 +57,7 @@ public class UserController {
 
   @PutMapping("/user/")
   public User updateUser(@RequestBody User reqUser) {
-    
+
     Optional<User> userOptional = repositoryUser.findById(reqUser.getId());
     if (userOptional.isEmpty()) {
       return null;

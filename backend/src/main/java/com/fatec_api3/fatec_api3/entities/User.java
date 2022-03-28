@@ -8,10 +8,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Document()
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
   @Id
@@ -29,17 +33,16 @@ public class User {
   private LocalDateTime updated;
 
   public User(
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-    Gender gender,
-    String country,
-    String zipCode,
-    String city,
-    LocalDateTime created,
-    LocalDateTime updated
-  ) {
+      String firstName,
+      String lastName,
+      String email,
+      String password,
+      Gender gender,
+      String country,
+      String zipCode,
+      String city,
+      LocalDateTime created,
+      LocalDateTime updated) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
